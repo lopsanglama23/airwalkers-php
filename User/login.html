@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Background Image</title>
+    <style>
+        #background-element {
+            width: 100%;
+            height: 100vh;
+            background-image: url('images/img1.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        #controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="background-element"></div>
+    <div id="controls">
+        <button id="previous-image-button">Previous</button>
+        <button id="next-image-button">Next</button>
+    </div>
+
+    <script>
+        var images = [
+            'images/img1.jpg',
+            'images/img2.jpg',
+            'images/img3.jpg'  // Add as many images as you want
+        ];
+        var currentIndex = 0;
+
+        document.getElementById('previous-image-button').addEventListener('click', function() {
+            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+            updateBackgroundImage();
+        });
+
+        document.getElementById('next-image-button').addEventListener('click', function() {
+            currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+            updateBackgroundImage();
+        });
+
+        function updateBackgroundImage() {
+            var element = document.getElementById('background-element');
+            element.style.backgroundImage = "url('" + images[currentIndex] + "')";
+        }
+    </script>
+</body>
+</html>
